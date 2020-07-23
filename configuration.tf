@@ -80,7 +80,7 @@ resource "azurerm_virtual_machine_extension" "example" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "yum -y install ansible; ansible-playbook /ansible-playbook/config.yml"
+        "commandToExecute": " yum -y install ansible; ansible-playbook /ansible-playbook/config.yml"
     }
 SETTINGS
 
