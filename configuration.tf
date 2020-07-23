@@ -4,7 +4,7 @@ variable "prefix" {
 
 resource "azurerm_resource_group" "main" {
   name     = data.azurerm_resource_group.resource_group.name
-  location = data.azurerm_resource_group.location
+  location = data.azurerm_resource_group.resource_group.location
 }
 
 resource "azurerm_virtual_network" "main" {
@@ -18,7 +18,7 @@ resource "azurerm_subnet" "internal" {
   name                 = data.azurerm_subnet.subnet.name
   resource_group_name  = data.azurerm_subnet.subnet.resource_group_name
   virtual_network_name = data.azurerm_subnet.subnet.virtual_network_name
-  address_prefix       = data.azurerm_subnet.subnet.address_space
+  address_prefix       = data.azurerm_subnet.subnet.address_prefix
 }
 
 resource "azurerm_network_interface" "main" {
