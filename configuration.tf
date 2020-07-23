@@ -70,22 +70,3 @@ resource "azurerm_virtual_machine" "main" {
     environment = "lsong-test"
   }
 }
-
-resource "azurerm_virtual_machine_extension" "example" {
-  name                 = "hostname"
-  virtual_machine_id   = azurerm_virtual_machine.main.id
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
-  type_handler_version = "2.0"
-
-  settings = <<SETTINGS
-    {
-        "commandToExecute": " yum -y install ansible; ansible-playbook /ansible-playbook/config.yml"
-    }
-SETTINGS
-
-
-  tags = {
-    environment = "lsong-test"
-  }
-}
