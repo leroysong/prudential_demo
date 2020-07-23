@@ -47,9 +47,9 @@ resource "azurerm_virtual_machine" "main" {
   # delete_data_disks_on_termination = true
 
   storage_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
+    publisher = "OpenLogic"
+    offer     = "CentOS"
+    sku       = "7.1"
     version   = "latest"
   }
   storage_os_disk {
