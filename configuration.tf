@@ -8,14 +8,14 @@ resource "azurerm_resource_group" "main" {
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.default}-vnet"
+  name                = "${var.prefix}-vnet"
   address_space       = ["10.3.0.0/24"]
   location            = "australiaeast"
   resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_subnet" "internal" {
-  name                 = "${var.default}-subnet-1"
+  name                 = "${var.prefix}-subnet-1"
   resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefix       = "10.3.0.0/25"
