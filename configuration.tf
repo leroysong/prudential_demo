@@ -3,22 +3,22 @@ variable "prefix" {
 }
 
 resource "azurerm_resource_group" "main" {
-  name     = data.azurerm_resource_group.resource_group.name
-  location = data.azurerm_resource_group.resource_group.location
+  name     = "ls-tf-demo-rg"
+  location = "australiaeast"
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = data.azurerm_virtual_network.vnet.name
-  address_space       = data.azurerm_virtual_network.vnet.address_space
-  location            = data.azurerm_virtual_network.vnet.location
-  resource_group_name = data.azurerm_virtual_network.vnet.resource_group_name
+  name                = "${var.default}-vnet"
+  address_space       = ["10.3.0.0/24"]
+  location            = "australiaeast"
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_subnet" "internal" {
-  name                 = data.azurerm_subnet.subnet.name
-  resource_group_name  = data.azurerm_subnet.subnet.resource_group_name
-  virtual_network_name = data.azurerm_subnet.subnet.virtual_network_name
-  address_prefix       = data.azurerm_subnet.subnet.address_prefix
+  name                 = "${var.default}-subnet-1"
+  resource_group_name  = azurerm_resource_group.main.name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefix       = "10.3.0.0/25"
 }
 
 resource "azurerm_network_interface" "main" {
